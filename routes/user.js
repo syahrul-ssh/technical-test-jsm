@@ -79,8 +79,10 @@ router.put('/:id', auth, async (req, res) => {
 
 router.delete('/:id', auth, async (req, res) => {
   const { id } = req.params;
+  const users = await db.User.findAll({ attributes: ['id', 'username'], include: [{model: db.Level}, {model: db.Department}] });
   try {
     await db.User.destroy({ where: { id } });
+    await db.Level.destroy({ where: { id: users.level_id } });
     res.send('User deleted');
   } catch (error) {
     res.status(500).send(error.message);
