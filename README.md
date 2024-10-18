@@ -5,7 +5,7 @@
 ## Instalasi
 ### 1. Instal Dependencies
 
-npm install atau yarn install
+npm install
 
 ### 2. Konfigurasi Database
 
